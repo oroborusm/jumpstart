@@ -221,7 +221,7 @@ after_bundle do
   stop_spring
   add_users
   add_bootstrap
-  add_sidekiq
+  #add_sidekiq
   add_foreman
   add_webpack
   add_announcements
