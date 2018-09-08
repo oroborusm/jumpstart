@@ -42,7 +42,7 @@ def add_gems
   gem 'omniauth-facebook', '~> 5.0'
   gem 'omniauth-github', '~> 1.3'
   gem 'omniauth-twitter', '~> 1.4'
-  gem 'sidekiq', '~> 5.1', '>= 5.1.3'
+  #gem 'sidekiq', '~> 5.1', '>= 5.1.3'
   gem 'sitemap_generator', '~> 6.0', '>= 6.0.1'
   gem 'webpacker', '~> 3.5', '>= 3.5.3'
   gem 'whenever', require: false
@@ -118,17 +118,17 @@ def add_webpack
   rails_command 'webpacker:install'
 end
 
-def add_sidekiq
-  environment "config.active_job.queue_adapter = :sidekiq"
+#def add_sidekiq
+#  environment "config.active_job.queue_adapter = :sidekiq"
 
-  insert_into_file "config/routes.rb",
-    "require 'sidekiq/web'\n\n",
-    before: "Rails.application.routes.draw do"
+#  insert_into_file "config/routes.rb",
+#    "require 'sidekiq/web'\n\n",
+#    before: "Rails.application.routes.draw do"
 
-  insert_into_file "config/routes.rb",
-    "  authenticate :user, lambda { |u| u.admin? } do\n    mount Sidekiq::Web => '/sidekiq'\n  end\n\n",
-    after: "Rails.application.routes.draw do\n"
-end
+#  insert_into_file "config/routes.rb",
+#    "  authenticate :user, lambda { |u| u.admin? } do\n    mount Sidekiq::Web => '/sidekiq'\n  end\n\n",
+#    after: "Rails.application.routes.draw do\n"
+#end
 
 def add_foreman
   copy_file "Procfile"
